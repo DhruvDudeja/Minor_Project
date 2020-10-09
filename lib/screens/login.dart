@@ -27,71 +27,137 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ModalProgressHUD(
-        inAsyncCall: showSpinner,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(height: 100.0),
-                Text(
-                  "Login",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      body: Center(
+        child: ModalProgressHUD(
+          inAsyncCall: showSpinner,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+
+                  children: <Widget>[
+
+                    Text(
+                      "Login",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0),
+
+                    ),
+                    const SizedBox(height: 100.0),
+                    const SizedBox(height: 20.0),
+
+                    TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      decoration: InputDecoration(hintText: "Enter email",
+                      contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey[200])
+                        )
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(hintText: "Enter password",
+                        contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey[200]))
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Padding(
+                      padding: const EdgeInsets.all(30),
+                      child: ButtonTheme(
+                      minWidth: 300,
+                        height: 50,
+                        child: RaisedButton(
+
+                          padding: EdgeInsets.only(top: 3, left: 3),
+                          child: Text("Login",
+
+                            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)
+                            ,),
+                          color: Color(0xFFFC6A7F),
+                          shape: RoundedRectangleBorder(
+
+                              side: BorderSide(
+
+                              color: Colors.black,
+                              ),
+                            borderRadius: BorderRadius.circular(50)
+                               ),
+                          onPressed: () async {
+                            if (_emailController.text.isEmpty ||
+                                _passwordController.text.isEmpty) {
+                              print("Email and password cannot be empty");
+                              return;
+                            }
+                            try {
+                              final user = await AuthHelper.signInWithEmail(
+                                  email: _emailController.text,
+                                  password: _passwordController.text);
+                              if (user != null) {
+                                print("login successful");
+                                Navigator.pushNamed(context, WritePage.id);
+                              }
+                              setState(() {
+                                showSpinner = false;
+                              });
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                    Text('OR'),
+                    Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: ButtonTheme(
+
+                        minWidth: 100,
+                        height: 50,
+                        child: RaisedButton(
+
+                          padding: EdgeInsets.only(top: 3, left: 3),
+
+                          shape: RoundedRectangleBorder(
+                              side: BorderSide(
+
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(50)
+
+                          ),
+                          onPressed: () async {
+                            try {
+                              await AuthHelper.signInWithGoogle();
+                              Navigator.pushNamed(context, WritePage.id);
+                              setState(() {
+                                showSpinner = false;
+                              });
+                            } catch (e) {
+                              print(e);
+                            }
+                          },
+                         color: Colors.white, child:  new Row(
+
+                            children: <Widget>[
+                          Image.asset('assets/google.jpg'
+                            ,height: 35.0,
+                          ),
+                          Text("         Login with Google",
+                            style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)
+                            ,)
+                          ], ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 20.0),
-                TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: _emailController,
-                  decoration: InputDecoration(hintText: "Enter email"),
-                ),
-                const SizedBox(height: 10.0),
-                TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(hintText: "Enter password"),
-                ),
-                const SizedBox(height: 10.0),
-                RaisedButton(
-                  child: Text("Login"),
-                  onPressed: () async {
-                    if (_emailController.text.isEmpty ||
-                        _passwordController.text.isEmpty) {
-                      print("Email and password cannot be empty");
-                      return;
-                    }
-                    try {
-                      final user = await AuthHelper.signInWithEmail(
-                          email: _emailController.text,
-                          password: _passwordController.text);
-                      if (user != null) {
-                        print("login successful");
-                        Navigator.pushNamed(context, WritePage.id);
-                      }
-                      setState(() {
-                        showSpinner = false;
-                      });
-                    } catch (e) {
-                      print(e);
-                    }
-                  },
-                ),
-                RaisedButton(
-                  child: Text("Login with Google"),
-                  onPressed: () async {
-                    try {
-                      await AuthHelper.signInWithGoogle();
-                      Navigator.pushNamed(context, WritePage.id);
-                      setState(() {
-                        showSpinner = false;
-                      });
-                    } catch (e) {
-                      print(e);
-                    }
-                  },
-                ),
-              ],
+              ),
             ),
           ),
         ),
