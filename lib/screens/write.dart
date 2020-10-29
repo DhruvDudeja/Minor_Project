@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,7 @@ class WritePage extends StatefulWidget {
 class _WritePageState extends State<WritePage> {
   Widget slide(BuildContext context){
     return Container(
-      child: Text('yo'),
+       child: Text('yo'),
     );
   }
   @override
@@ -20,9 +22,11 @@ class _WritePageState extends State<WritePage> {
       floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.black,
             child: Icon(Icons.nfc ),
-            onPressed:(){
-      showModalBottomSheet(context: null, builder: slide);
-      }
+            onPressed:(){  showModalBottomSheet(context: context, builder: (context){
+              return Container(
+                color: Colors.white,
+              );
+            });}
       ),
 
 

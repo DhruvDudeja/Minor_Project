@@ -11,7 +11,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MaterialApp(
     color: Colors.white,
-home: Information(),
+home: WritePage(),
 //    initialRoute: WelcomePage.id,
 //    routes: {
 //      WelcomePage.id: (context) => WelcomePage(),
@@ -20,6 +20,7 @@ home: Information(),
 //      RegisterPage.id: (context) => RegisterPage(),
 //    },
   ));
+
 }
 
 // class MainPage extends StatelessWidget {
