@@ -52,6 +52,7 @@ flutter:
     - assets/images1.png
     - assets/google.jpg
     - assets/background.png
+    - assets/background2.png
   fonts:
 
     - family: Source Sans pro

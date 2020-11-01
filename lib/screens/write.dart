@@ -12,7 +12,7 @@ class WritePage extends StatefulWidget {
 class _WritePageState extends State<WritePage> {
   Widget slide(BuildContext context){
     return Container(
-       child: Text('yo'),
+        child: Text('yo'),
     );
   }
   @override
