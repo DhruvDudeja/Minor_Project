@@ -51,6 +51,8 @@ flutter:
   assets:
     - assets/images1.png
     - assets/google.jpg
+    - assets/icons.png
+    - assets/nfcs.jpg
 #    - assets/background.png
 #    - assets/background2.png
   fonts:

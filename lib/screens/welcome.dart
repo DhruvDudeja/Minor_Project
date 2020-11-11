@@ -16,7 +16,8 @@ class _WelcomePageState extends State<WelcomePage> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -26,107 +27,69 @@ class _WelcomePageState extends State<WelcomePage> {
                     "Nimble",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 50,
+                        fontSize: 80,
                         fontFamily: 'Bunch Blossoms'),
                   ),
                   SizedBox()
+                  
                 ],
               ),
-              Container(
-                margin: EdgeInsetsDirectional.only(top: 20),
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                  color: Color(0xFF18D191),
-                ),
-                child: Icon(
-                  Icons.subject,
-                  color: Colors.white,
-                ),
-              ),
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100.0),
-                  color: Color(0xFFFC6A7F),
-                ),
-                child: Icon(
-                  Icons.group,
-                  size: 40,
-                  color: Colors.white,
-                ),
-              ),
-              Container(
-                width: 60.0,
-                height: 60.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100.0),
-                  color: Color(0xFF45E0EC),
-                ),
-                child: Icon(
-                  Icons.mail,
-                  color: Colors.white,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: 2),
-                width: 60.0,
-                height: 60.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100.0),
-                  color: Color(0xFFFFCE56),
-                ),
-                child: Icon(
-                  Icons.phone,
-                  color: Colors.white,
-                ),
-              ),
-              Column(
-                children: <Widget>[
-                  MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
-                    onPressed: () {
-                      Navigator.pushNamed(context, LoginPage.id);
-                    },
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(50),
+            Container(
+              child: Image(image: AssetImage('assets/icons.png'),width: 300
+                ,),
+            ),
+
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  children: <Widget>[
+                    MaterialButton(
+                      minWidth: double.infinity,
+                      height: 60,
+                      color: Colors.white,
+                      onPressed: () {
+                        Navigator.pushNamed(context, LoginPage.id);
+                      },
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                            color: Colors.black, fontSize: 18),
+                      ),
                     ),
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                          color: Colors.lightBlueAccent, fontSize: 18),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               SizedBox(
                 height: 20,
               ),
-              Column(
-                children: <Widget>[
-                  MaterialButton(
-                    padding: EdgeInsets.only(top: 3, left: 3),
-                    minWidth: double.infinity,
-                    color: Color(0xFFFC6A7F),
-                    height: 60,
-                    elevation: 0,
-                    onPressed: () {
-                      Navigator.pushNamed(context, RegisterPage.id);
-                    },
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Color(0xFF45E0EC)),
-                      borderRadius: BorderRadius.circular(50),
+              Padding(padding:EdgeInsets.only(left: 30,right: 30),
+                child: Column(
+                  children: <Widget>[
+                    MaterialButton(
+                      padding: EdgeInsets.only(top: 3, left: 3),
+                      minWidth: double.infinity,
+                      color: Colors.black,
+                      height: 60,
+                      elevation: 0,
+                      onPressed: () {
+                        Navigator.pushNamed(context, RegisterPage.id);
+                      },
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Color(0xFF45E0EC)),
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Text(
+                        "Sign up",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                     ),
-                    child: Text(
-                      "Sign up",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

@@ -56,7 +56,7 @@ class MainDrawer extends StatelessWidget {
                 );
               }),
           ListTile(
-              leading: Icon(Icons.logout),
+              leading: Icon(Icons.exit_to_app),
               title: Text(
                 'Logout',
                 style: TextStyle(fontSize: 18),

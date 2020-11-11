@@ -12,19 +12,19 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MaterialApp(
-    color: Colors.white,
-    home: HomePage(),
-    initialRoute: WelcomePage.id,
-    routes: {
-      WelcomePage.id: (context) => WelcomePage(),
-      LoginPage.id: (context) => LoginPage(),
-      WritePage.id: (context) => WritePage(),
-      RegisterPage.id: (context) => RegisterPage(),
-      HomePage.id: (context) => HomePage(),
-      Information.id: (context) => Information(),
-      ContactsPage.id: (context) => ContactsPage(),
-    },
-  ));
+
+    home:
+    HomePage(),
+    //initialRoute: WelcomePage.id,
+   routes: {
+     //WelcomePage.id: (context) => WelcomePage(),
+     //LoginPage.id: (context) => LoginPage(),
+     WritePage.id: (context) => WritePage(),
+     RegisterPage.id: (context) => RegisterPage(),
+     HomePage.id: (context) => HomePage(),
+       Information.id: (context) => Information(),
+     ContactsPage.id: (context) => ContactsPage(),
+   }));
 }
 
 // class MainPage extends StatelessWidget {

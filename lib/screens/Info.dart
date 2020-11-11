@@ -1,6 +1,7 @@
 import 'package:back/screens/write.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class Information extends StatefulWidget {
@@ -31,40 +32,57 @@ class _InformationState extends State<Information> {
           children: <Widget>[
             CircleAvatar(
               radius: 80,
+              backgroundColor: Colors.blueGrey ,
               child: Icon(
                 Icons.person,
                 size: 50,
-                color: Colors.grey,
+                color: Colors.white,
               ),
             ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Name',
-                hintText: 'ENTER NAME',
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: TextField(
+                decoration: InputDecoration(
+
+
+                  labelText: 'Name',
+                  hintText: 'ENTER NAME',
+                  contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(
-              height: 30,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                hintText: 'ENTER EMAIL',
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Colors.blue,
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  hintText: 'ENTER EMAIL',
+                  contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                  enabledBorder: OutlineInputBorder(
+
+                    borderSide: BorderSide(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
             ),
-            RaisedButton(
-              color: Colors.grey,
+    Padding(
+    padding: const EdgeInsets.all(30),
+    child: ButtonTheme(
+    minWidth: 300,
+    height: 50,
+            child:RaisedButton(
+              color: Colors.black,
               padding: EdgeInsets.only(top: 3, left: 3),
+
               child: Text(
                 'CONTINUE',
                 style: TextStyle(
@@ -72,9 +90,12 @@ class _InformationState extends State<Information> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              shape: RoundedRectangleBorder(),
-            )
-          ],
+              shape: RoundedRectangleBorder(
+
+                borderRadius: BorderRadius.circular(50),
+              ),
+
+    ))),],
         ),
       ),
     );
