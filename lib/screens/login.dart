@@ -97,7 +97,9 @@ class _LoginPageState extends State<LoginPage> {
                                   password: _passwordController.text);
                               if (user != null) {
                                 print("login successful");
-                                Navigator.pushNamed(context, HomePage.id);
+                                Navigator.pop(context);
+                                Navigator.pushReplacementNamed(
+                                    context, HomePage.id);
                               }
                               setState(() {
                                 showSpinner = false;

@@ -1,7 +1,10 @@
+import 'package:back/screens/Info.dart';
+import 'package:back/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:back/services/authentication.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:back/screens/write.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class RegisterPage extends StatefulWidget {
   static String id = 'register';
@@ -12,6 +15,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool showSpinner = false;
+  TextEditingController _nameController;
   TextEditingController _emailController;
   TextEditingController _passwordController;
   TextEditingController _confirmpasswordController;
@@ -19,6 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
+    _nameController = TextEditingController(text: "");
     _emailController = TextEditingController(text: "");
     _passwordController = TextEditingController(text: "");
     _confirmpasswordController = TextEditingController(text: "");
@@ -35,44 +40,57 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
-
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     const SizedBox(height: 100.0),
                     Text(
                       "Sign Up",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50.0),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 50.0),
                     ),
                     const SizedBox(height: 20.0),
-                    const SizedBox(height: 20.0),
+                    // const SizedBox(height: 20.0),
+                    // TextField(
+                    //   controller: _nameController,
+                    //   decoration: InputDecoration(
+                    //       hintText: "Full Name",
+                    //       contentPadding:
+                    //           EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    //       enabledBorder: OutlineInputBorder(
+                    //           borderSide: BorderSide(color: Colors.grey[200]))),
+                    // ),
+                    // const SizedBox(height: 10.0),
                     TextField(
                       keyboardType: TextInputType.emailAddress,
                       controller: _emailController,
-                      decoration: InputDecoration(hintText: "Enter email",
-                          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                      decoration: InputDecoration(
+                          hintText: "Email Address",
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey[200])
-                          )),
+                              borderSide: BorderSide(color: Colors.grey[200]))),
                     ),
                     const SizedBox(height: 10.0),
                     TextField(
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(hintText: "Enter password",
-                          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                      decoration: InputDecoration(
+                          hintText: "Password",
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey[200])
-                          )),
+                              borderSide: BorderSide(color: Colors.grey[200]))),
                     ),
                     const SizedBox(height: 10.0),
                     TextField(
                       controller: _confirmpasswordController,
                       obscureText: true,
-                      decoration: InputDecoration(hintText: "Confirm password",
-                          contentPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+                      decoration: InputDecoration(
+                          hintText: "Confirm Password",
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey[200])
-                          )),
+                              borderSide: BorderSide(color: Colors.grey[200]))),
                     ),
                     const SizedBox(height: 10.0),
                     Padding(
@@ -81,16 +99,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         minWidth: 300,
                         height: 50,
                         child: RaisedButton(
-                          child: Text("SignUp", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)
-                            ,
+                          child: Text(
+                            "SignUp",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           color: Color(0xFF45E0EC),
-                          shape: RoundedRectangleBorder(side: BorderSide(
-
-                            color: Colors.black,
-                          ),
-                            borderRadius: BorderRadius.circular(50)
-                          ),
+                          shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Colors.black,
+                              ),
+                              borderRadius: BorderRadius.circular(50)),
                           onPressed: () async {
                             if (_emailController.text.isEmpty ||
                                 _passwordController.text.isEmpty) {
@@ -107,9 +126,12 @@ class _RegisterPageState extends State<RegisterPage> {
                               final newUser = await AuthHelper.signUpWithEmail(
                                   email: _emailController.text,
                                   password: _passwordController.text);
+
                               if (newUser != null) {
                                 print("Account Created");
-                                Navigator.pushNamed(context, WritePage.id);
+                                Navigator.pop(context);
+                                Navigator.pushReplacementNamed(
+                                    context, Information.id);
                               }
                               setState(() {
                                 showSpinner = false;

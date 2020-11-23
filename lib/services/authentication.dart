@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthHelper {
@@ -35,9 +34,15 @@ class AuthHelper {
   }
 
   static getUserDetails() {
-    final name = _auth.currentUser.displayName;
-    final email = _auth.currentUser.email;
-    final photo = _auth.currentUser.photoURL;
-    return [name, email, photo];
+    // final name = _auth.currentUser.displayName;
+    // final email = _auth.currentUser.email;
+    // final photo = _auth.currentUser.photoURL;
+    var userData = {
+      'name': _auth.currentUser.displayName,
+      'email': _auth.currentUser.email,
+      'photo': _auth.currentUser.photoURL
+    };
+    print(userData);
+    return userData;
   }
 }

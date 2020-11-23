@@ -3,7 +3,7 @@ import '../services/authentication.dart';
 import 'package:back/screens/Info.dart';
 import 'package:back/screens/welcome.dart';
 
-List<String> userData = AuthHelper.getUserDetails();
+Map userData = AuthHelper.getUserDetails();
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -30,11 +30,12 @@ class MainDrawer extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'NAME',
+                    // userData['name'],
+                    'name',
                     style: TextStyle(fontSize: 22, color: Colors.white),
                   ),
                   Text(
-                    'EMAIL',
+                    userData['email'],
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
