@@ -1,4 +1,4 @@
-import 'package:back/screens/write.dart';
+import 'package:back/screens/write_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -28,21 +28,24 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(child: Container(
-          decoration: BoxDecoration(
-          //  color: Colors.grey,
+        body: SafeArea(
+      child: Container(
+        decoration: BoxDecoration(
+            //  color: Colors.grey,
             image: DecorationImage(
-               image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover)),
-
-    child: Column(
+                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover)),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Column(
               children: <Widget>[
                 Text(
                   "LOGIN",
-                  style: TextStyle(fontFamily: 'poppins',
-                      color: Colors.white,        fontWeight: FontWeight.w900, fontSize: 80.0),
+                  style: TextStyle(
+                      fontFamily: 'poppins',
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 80.0),
                 ),
                 const SizedBox(height: 100.0),
                 const SizedBox(height: 20.0),
@@ -59,8 +62,10 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _emailController,
                       decoration: InputDecoration(
                           hintText: "Enter email",
-                          hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),  contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                          hintStyle:
+                              TextStyle(fontSize: 20.0, color: Colors.white),
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.white54))),
                     ),
@@ -76,17 +81,19 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: TextField(
-
                       controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: "Enter password",
-                          hintStyle: TextStyle(fontSize: 20.0, color: Colors.white),
-                          contentPadding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                          hintStyle:
+                              TextStyle(fontSize: 20.0, color: Colors.white),
+                          contentPadding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 10),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.lightBlueAccent))),
-                    ),),
+                              borderSide:
+                                  BorderSide(color: Colors.lightBlueAccent))),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 10.0),
                 Padding(
@@ -99,12 +106,10 @@ class _LoginPageState extends State<LoginPage> {
 
                       child: Text(
                         "Login",
-                        style: TextStyle(
-                            fontSize: 20
-                            ,color: Colors.white),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                       //color: Color(0xFF00d2ff),
-                      color:  Colors.pink,
+                      color: Colors.pink,
                       shape: RoundedRectangleBorder(
                           side: BorderSide(
                             color: Colors.black,
@@ -136,11 +141,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                Text('OR',style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),),
-
+                Text(
+                  'OR',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: ButtonTheme(
@@ -174,25 +181,24 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Text(
                             "         Login with Google",
-                            style: TextStyle(
-                                fontSize: 20),
+                            style: TextStyle(fontSize: 20),
                           )
                         ],
                       ),
                     ),
                   ),
                 ),
-
               ],
-            ),],
+            ),
+          ],
         ),
-        ),));
-
-
-  }}
+      ),
+    ));
+  }
+}
 
 /*
-import 'package:back/screens/write.dart';
+import 'package:back/screens/write_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -357,4 +363,3 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 */
-

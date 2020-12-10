@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:back/screens/write.dart';
+import 'package:back/screens/write_page.dart';
 import 'package:back/screens/contacts_page.dart';
 import 'package:back/screens/main_drawer.dart';
 

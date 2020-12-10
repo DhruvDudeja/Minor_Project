@@ -1,5 +1,5 @@
 import 'package:back/screens/home.dart';
-import 'package:back/screens/write.dart';
+import 'package:back/screens/write_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

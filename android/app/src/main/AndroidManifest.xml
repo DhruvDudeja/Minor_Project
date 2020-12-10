@@ -8,6 +8,7 @@
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true"/>
+    <uses-permission android:name="android.permission.NFC"/>
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="back"

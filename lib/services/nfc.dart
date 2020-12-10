@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:nfc_manager/nfc_manager.dart';
 import 'dart:typed_data';
+import 'package:back/util/converter.dart';
 
 class NfcHelper {
   void tagRead() {

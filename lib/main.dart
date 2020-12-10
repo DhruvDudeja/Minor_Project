@@ -2,7 +2,7 @@ import 'package:back/screens/Info.dart';
 import 'package:back/screens/contacts_page.dart';
 import 'package:back/screens/home.dart';
 import 'package:back/screens/register.dart';
-import 'package:back/screens/write.dart';
+import 'package:back/screens/write_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
