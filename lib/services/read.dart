@@ -78,11 +78,12 @@ class _ReadState extends State<Read> {
         child: Column(
           children: <Widget>[
             Text(
-              '  HOLD NEAR THE TAG',
+              'HOLD NEAR THE TAG',
               style: TextStyle(
-                  fontSize: 40,
+                  fontSize: 30,
                   color: Colors.black,
                   fontFamily: 'Source Sans Pro'),
+              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 50,
