@@ -191,6 +191,7 @@ class _RegisterPageState extends State<RegisterPage> {
     ));
   }
 }
+
 /*
 import 'package:back/screens/Info.dart';
 import 'package:back/screens/home.dart';
