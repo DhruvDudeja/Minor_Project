@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:back/services/nfc.dart';
+import 'package:back/services/nfc.dart';
 import 'package:back/services/read.dart';
 import 'package:nfc_in_flutter/nfc_in_flutter.dart';
 import 'package:simple_vcard_parser/simple_vcard_parser.dart';
@@ -70,7 +70,7 @@ class _WritePageState extends State<WritePage> {
                                   await NFC.readNDEF(once: true).first;
                               print("payload: ${message.payload}");
                               VCard vc = VCard(message.payload);
-                              print(vc.);
+                              print(vc..formattedName);
                               print(vc.email);
                               print(vc.version);
                             },
@@ -148,30 +148,35 @@ class _WritePageState extends State<WritePage> {
               width: 20,
             ),
             RaisedButton(
-                color: Colors.teal,
-                child: Text('write'),
-                onPressed: () {
-                  Stream<NDEFMessage> stream = NFC.readNDEF();
-
-                  List<NDEFRecord> records = _records.map((record) {
-//                     return NDEFRecord.custom(
-//                         id: null,
-//                         type: 'text/vacrd',
-//                         tnf: NFCTypeNameFormat.mime_media,
-//                         payload: '''BEGIN:VCARD
-// VERSION:4.0
-// FN:Forrest Gump
-// TEL;TYPE=work,voice;VALUE=uri:tel:+1-111-555-1212
-// EMAIL;TYPE=INTERNET:forrestgump@example.com
-// END:VCARD''');
-                    return NDEFRecord.text('hello world');
-                  }).toList();
-
-                  stream.listen((NDEFMessage message) {
-                    NDEFMessage newMessage = NDEFMessage.withRecords(records);
-                    message.tag.write(newMessage);
-                  });
-                }),
+              color: Colors.teal,
+              child: Text('write'),
+              onPressed: () {
+                NfcHelper().ndefWrite(
+                    name: 'Dhruv',
+                    phoneno: '11111',
+                    email: 'sexybitch@gmail.com');
+//                   Stream<NDEFMessage> stream = NFC.readNDEF();
+//
+//                   List<NDEFRecord> records = _records.map((record) {
+// //                     return NDEFRecord.custom(
+// //                         id: null,
+// //                         type: 'text/vacrd',
+// //                         tnf: NFCTypeNameFormat.mime_media,
+// //                         payload: '''BEGIN:VCARD
+// // VERSION:4.0
+// // FN:Forrest Gump
+// // TEL;TYPE=work,voice;VALUE=uri:tel:+1-111-555-1212
+// // EMAIL;TYPE=INTERNET:forrestgump@example.com
+// // END:VCARD''');
+//                     return NDEFRecord.text('hello world');
+//                   }).toList();
+//
+//                   stream.listen((NDEFMessage message) {
+//                     NDEFMessage newMessage = NDEFMessage.withRecords(records);
+//                     message.tag.write(newMessage);
+//                   });
+              },
+            ),
           ],
         ),
       ),
