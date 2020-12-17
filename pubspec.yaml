@@ -37,6 +37,7 @@ dependencies:
   nfc_manager: ^2.0.2
   nfc_in_flutter: ^2.0.5
   simple_vcard_parser: ^0.1.6
+  firestore_ui: ^1.12.0
 
 dev_dependencies:
   flutter_test:

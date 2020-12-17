@@ -15,7 +15,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool showSpinner = false;
-  TextEditingController _nameController;
+  // TextEditingController _nameController;
   TextEditingController _emailController;
   TextEditingController _passwordController;
   TextEditingController _confirmpasswordController;
@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: "");
+    // _nameController = TextEditingController(text: "");
     _emailController = TextEditingController(text: "");
     _passwordController = TextEditingController(text: "");
     _confirmpasswordController = TextEditingController(text: "");
