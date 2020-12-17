@@ -15,7 +15,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MaterialApp(
     home: HomePage(),
-    initialRoute: WritePage.id,
+    initialRoute: WelcomePage.id,
     routes: {
       WelcomePage.id: (context) => WelcomePage(),
       LoginPage.id: (context) => LoginPage(),

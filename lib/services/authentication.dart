@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AuthHelper {
-  static FirebaseAuth _auth = FirebaseAuth.instance;
+FirebaseAuth _auth = FirebaseAuth.instance;
 
+class AuthHelper {
   static signInWithEmail({String email, String password}) async {
     final res = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
@@ -51,7 +51,8 @@ class AuthHelper {
 class UserHelper {
   static FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  static saveUser(User user, String name, String phone, String email) async {
+  static saveUser(String name, String phone, String email) async {
+    User user = _auth.currentUser;
     Map<String, dynamic> userData = {
       "name": name,
       "email": email,
@@ -62,7 +63,8 @@ class UserHelper {
     await userRef.set(userData);
   }
 
-  static saveContact(User user, String name, String phone, String email) async {
+  static saveContact(String name, String phone, String email) async {
+    User user = _auth.currentUser;
     Map<String, dynamic> contactData = {
       "name": name,
       "email": email,

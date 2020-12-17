@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:back/services/nfc.dart';
-import 'package:back/services/read.dart';
+import 'package:back/services/write_nfc.dart';
 import 'package:nfc_in_flutter/nfc_in_flutter.dart';
 import 'package:simple_vcard_parser/simple_vcard_parser.dart';
+import 'package:back/services/authentication.dart';
 
 class WritePage extends StatefulWidget {
   static String id = 'write';
@@ -12,7 +12,7 @@ class WritePage extends StatefulWidget {
 }
 
 class _WritePageState extends State<WritePage> {
-  List _records = [];
+  // List _records = [];
 
   @override
   Widget build(BuildContext context) {
@@ -66,13 +66,15 @@ class _WritePageState extends State<WritePage> {
                             ),
                             color: Colors.teal,
                             onPressed: () async {
-                              NDEFMessage message =
-                                  await NFC.readNDEF(once: true).first;
-                              print("payload: ${message.payload}");
+                              NDEFMessage message = await NFC
+                                  .readNDEF(
+                                      once: true,
+                                      readerMode: NFCDispatchReaderMode())
+                                  .first;
+                              print(message.payload);
                               VCard vc = VCard(message.payload);
-                              print(vc..formattedName);
-                              print(vc.email);
-                              print(vc.version);
+                              UserHelper.saveContact(
+                                  vc.formattedName, vc.telephone, vc.email);
                             },
                           ),
                         ],
@@ -101,7 +103,7 @@ class _WritePageState extends State<WritePage> {
               height: 20,
             ),
             Text(
-              'AKSHAY MAHARA',
+              "Akshay Mahara",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w100,
@@ -120,7 +122,7 @@ class _WritePageState extends State<WritePage> {
                     color: Colors.teal,
                   ),
                   title: Text(
-                    '+91 9599697275',
+                    "6969420420",
                     style: TextStyle(
                       fontFamily: 'Source Sans Pro',
                     ),
@@ -138,7 +140,7 @@ class _WritePageState extends State<WritePage> {
                     color: Colors.blueGrey,
                   ),
                   title: Text(
-                    'akshaymahara10@gmail.com',
+                    'akshaymahar10@gmail.com',
                     style: TextStyle(
                       fontFamily: "Source Sans Pro",
                     ),
@@ -155,28 +157,15 @@ class _WritePageState extends State<WritePage> {
                     name: 'Dhruv',
                     phoneno: '11111',
                     email: 'sexybitch@gmail.com');
-//                   Stream<NDEFMessage> stream = NFC.readNDEF();
-//
-//                   List<NDEFRecord> records = _records.map((record) {
-// //                     return NDEFRecord.custom(
-// //                         id: null,
-// //                         type: 'text/vacrd',
-// //                         tnf: NFCTypeNameFormat.mime_media,
-// //                         payload: '''BEGIN:VCARD
-// // VERSION:4.0
-// // FN:Forrest Gump
-// // TEL;TYPE=work,voice;VALUE=uri:tel:+1-111-555-1212
-// // EMAIL;TYPE=INTERNET:forrestgump@example.com
-// // END:VCARD''');
-//                     return NDEFRecord.text('hello world');
-//                   }).toList();
-//
-//                   stream.listen((NDEFMessage message) {
-//                     NDEFMessage newMessage = NDEFMessage.withRecords(records);
-//                     message.tag.write(newMessage);
-//                   });
               },
             ),
+            // RaisedButton(
+            //     color: Colors.teal,
+            //     child: Text('write to db'),
+            //     onPressed: () async {
+            //       await UserHelper.saveContact(
+            //           'Dhruv', '9999', 'sexybitch@123.com');
+            //     })
           ],
         ),
       ),

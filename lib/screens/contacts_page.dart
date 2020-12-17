@@ -2,6 +2,8 @@ import 'package:back/screens/contact_detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:back/services/authentication.dart';
+
 class ContactsPage extends StatefulWidget {
   static String id = 'contactspage';
 
@@ -34,23 +36,6 @@ class _ContactsPageState extends State<ContactsPage> {
           ],
         ),
       ),
-      // child: ListView(
-      //   scrollDirection: Axis.horizontal,
-      //   children: <Widget>[
-      //     Column(
-      //       children: <Widget>[
-      //         Card(
-      //           child: ListTile(
-      //             leading: Icon(Icons.person),
-      //             title: Text('Name'),
-      //             subtitle: Text('Phone'),
-      //             dense: true,
-      //           ),
-      //         ),
-      //       ],
-      //     )
-      //   ],
-      // ),
     );
   }
 }

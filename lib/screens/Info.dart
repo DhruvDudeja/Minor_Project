@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:back/services/authentication.dart';
 
 class Information extends StatefulWidget {
   static String id = 'info';
@@ -12,6 +13,18 @@ class Information extends StatefulWidget {
 }
 
 class _InformationState extends State<Information> {
+  TextEditingController _emailController;
+  TextEditingController _nameController;
+  TextEditingController _phoneController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController(text: "");
+    _phoneController = TextEditingController(text: "");
+    _nameController = TextEditingController(text: "");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +62,7 @@ class _InformationState extends State<Information> {
             Padding(
               padding: const EdgeInsets.all(30),
               child: TextField(
+                controller: _nameController,
                 decoration: InputDecoration(
                   labelText: 'Name',
                   hintText: 'ENTER NAME',
@@ -65,6 +79,7 @@ class _InformationState extends State<Information> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
               child: TextField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   hintText: 'ENTER EMAIL',
@@ -79,24 +94,48 @@ class _InformationState extends State<Information> {
               ),
             ),
             Padding(
-                padding: const EdgeInsets.all(30),
-                child: ButtonTheme(
-                    minWidth: 300,
-                    height: 50,
-                    child: RaisedButton(
+              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+              child: TextField(
+                controller: _phoneController,
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                  hintText: 'ENTER PHONE NUMBER',
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
                       color: Colors.black,
-                      padding: EdgeInsets.only(top: 3, left: 3),
-                      child: Text(
-                        'CONTINUE',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ))),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: ButtonTheme(
+                minWidth: 300,
+                height: 50,
+                child: RaisedButton(
+                  onPressed: () async {
+                    await UserHelper.saveUser(_nameController.text,
+                        _phoneController.text, _emailController.text);
+                    //TODO: add alert box saying "User information saved"
+                  },
+                  color: Colors.black,
+                  padding: EdgeInsets.only(top: 3, left: 3),
+                  child: Text(
+                    'CONTINUE',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
