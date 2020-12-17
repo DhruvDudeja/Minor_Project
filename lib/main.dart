@@ -14,6 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MaterialApp(
+
     home: HomePage(),
     initialRoute: WelcomePage.id,
     routes: {

@@ -32,12 +32,19 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text(
+            'NIMBLE',
+
+          ),
+        ),
         body: SafeArea(
       child: Container(
         //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-        decoration: BoxDecoration(
+        /*decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover)),
+                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover)),*/
         child: Center(
           child: ModalProgressHUD(
             inAsyncCall: showSpinner,
@@ -54,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 80.0,
-                          color: Colors.white,
+                          color: Colors.black,
                           fontFamily: 'poppins',
                         ),
                       ),
@@ -80,7 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                               hintText: "Email Address",
                               hintStyle: TextStyle(
-                                  fontSize: 20.0, color: Colors.white),
+                                  fontSize: 20.0, color: Colors.grey),
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
@@ -101,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                               hintText: "Password",
                               hintStyle: TextStyle(
-                                  fontSize: 20.0, color: Colors.white),
+                                  fontSize: 20.0, color: Colors.grey),
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
@@ -120,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           decoration: InputDecoration(
                               hintText: "Confirm Password",
                               hintStyle: TextStyle(
-                                  fontSize: 20.0, color: Colors.white),
+                                  fontSize: 20.0, color: Colors.grey),
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
@@ -140,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            color: Color(0xFF45E0EC),
+                            color: Color(0xFF001717),
                             shape: RoundedRectangleBorder(
                                 side: BorderSide(
                                   color: Colors.black,

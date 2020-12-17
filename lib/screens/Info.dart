@@ -30,7 +30,7 @@ class _InformationState extends State<Information> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.home_filled),
+          icon: Icon(Icons.home ),
           onPressed: () {
             Navigator.pushReplacementNamed(context, HomePage.id);
           },

@@ -14,15 +14,19 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text(
+          'NIMBLE',
+
+        ),
+      ),
       body: SafeArea(
 
         child: Container(
           //padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-          decoration: BoxDecoration(
-            //color: Colors.grey,
-            image: DecorationImage(
-                  image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover)
-          ),child: Column(
+
+          child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Column(
@@ -56,7 +60,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Navigator.pushNamed(context, LoginPage.id);
                     },
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.black),
+                      side: BorderSide(color: Color(0xFF45E0EC)),
                       borderRadius: BorderRadius.circular(50),
                     ),
 
@@ -85,7 +89,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Navigator.pushNamed(context, RegisterPage.id);
                     },
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Color(0xFF45E0EC),),
+                      side: BorderSide(color: Colors.black ,),
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Text(

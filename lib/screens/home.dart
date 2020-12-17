@@ -34,14 +34,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        backgroundColor: Colors.black,
         title: Text(
-          'Nimble',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20,
-            fontFamily: 'Bunch Blossoms',
-          ),
+          'NIMBLE',
+
         ),
       ),
       drawer: MainDrawer(),

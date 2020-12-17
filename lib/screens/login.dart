@@ -28,12 +28,19 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text(
+            'NIMBLE',
+
+          ),
+        ),
         body: SafeArea(
       child: Container(
-        decoration: BoxDecoration(
+       /* decoration: BoxDecoration(
             //  color: Colors.grey,
             image: DecorationImage(
-                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover)),
+                image: AssetImage("assets/bg.jpg"), fit: BoxFit.cover)),*/
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -86,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                           hintText: "Enter password",
                           hintStyle:
-                              TextStyle(fontSize: 20.0, color: Colors.white),
+                              TextStyle(fontSize: 20.0, color: Colors.grey),
                           contentPadding: EdgeInsets.symmetric(
                               vertical: 10, horizontal: 10),
                           enabledBorder: OutlineInputBorder(
@@ -109,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       ),
                       //color: Color(0xFF00d2ff),
-                      color: Colors.pink,
+                      color: Color(0xFF001717),
                       shape: RoundedRectangleBorder(
                           side: BorderSide(
                             color: Colors.black,
@@ -144,24 +151,25 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   'OR',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(30.0),
+                  padding: const EdgeInsets.all(30),
                   child: ButtonTheme(
-                    minWidth: 100,
+                    minWidth: 300,
                     height: 50,
                     child: RaisedButton(
-                      padding: EdgeInsets.only(top: 3, left: 30),
+                      padding: EdgeInsets.only(top: 5, left: 5),
+
                       shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          color: Colors.black,
-                        ),
-                        //    borderRadius: BorderRadius.circular(50)
-                      ),
-                      onPressed: () async {
+                          side: BorderSide(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(50)),
+
+                    onPressed: () async {
                         try {
                           await AuthHelper.signInWithGoogle();
                           Navigator.pushNamed(context, WritePage.id);

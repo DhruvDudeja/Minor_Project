@@ -17,6 +17,13 @@ class _WritePageState extends State<WritePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text(
+          'NIMBLE',
+
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.black,
           child: Icon(Icons.nfc),
