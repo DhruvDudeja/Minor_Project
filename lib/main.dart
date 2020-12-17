@@ -25,7 +25,6 @@ void main() async {
       HomePage.id: (context) => HomePage(),
       Information.id: (context) => Information(),
       ContactsPage.id: (context) => ContactsPage(),
-      ContactDetails.id: (context) => ContactDetails(),
     },
   ));
 }

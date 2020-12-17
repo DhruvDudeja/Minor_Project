@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:back/services/write_nfc.dart';
 import 'package:nfc_in_flutter/nfc_in_flutter.dart';
 import 'package:simple_vcard_parser/simple_vcard_parser.dart';
 import 'package:back/services/authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class WritePage extends StatefulWidget {
   static String id = 'write';
@@ -12,10 +14,9 @@ class WritePage extends StatefulWidget {
 }
 
 class _WritePageState extends State<WritePage> {
-  // List _records = [];
-
   @override
   Widget build(BuildContext context) {
+    CollectionReference user = FirebaseFirestore.instance.collection('users');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,

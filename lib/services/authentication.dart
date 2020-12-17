@@ -74,4 +74,10 @@ class UserHelper {
         _db.collection("users").doc(user.uid).collection("contacts");
     await contactRef.add(contactData);
   }
+
+  static getUserData() async {
+    User user = _auth.currentUser;
+    final _userDataRef = _db.collection('users').doc(user.uid);
+    await _userDataRef.get().then((value) => return value);
+  }
 }

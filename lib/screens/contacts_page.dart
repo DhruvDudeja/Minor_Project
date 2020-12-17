@@ -1,41 +1,49 @@
 import 'package:back/screens/contact_detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:back/services/authentication.dart';
-
-class ContactsPage extends StatefulWidget {
+class ContactsPage extends StatelessWidget {
   static String id = 'contactspage';
+  final _auth = FirebaseAuth.instance;
 
-  @override
-  _ContactsPageState createState() => _ContactsPageState();
-}
-
-class _ContactsPageState extends State<ContactsPage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Card(
-                  child: ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text('Name'),
-                    dense: true,
-                    onTap: () {
-                      Navigator.pushNamed(context, ContactDetails.id);
-                    },
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('users')
+          .doc(_auth.currentUser.uid)
+          .collection('contacts')
+          .orderBy('name')
+          .snapshots(),
+      builder:
+          (BuildContext context, AsyncSnapshot<QuerySnapshot> querySnapshot) {
+        if (querySnapshot.hasError) {
+          return Text("error");
+        }
+        if (querySnapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else {
+          final list = querySnapshot.data.docs;
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              var contact = list[index];
+              return ListTile(
+                title: Text(list[index]['name']),
+                dense: true,
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ContactDetails(contact)));
+                },
+              );
+            },
+            itemCount: list.length,
+          );
+        }
+      },
     );
   }
 }
