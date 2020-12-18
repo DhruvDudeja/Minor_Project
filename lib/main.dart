@@ -13,20 +13,23 @@ import 'screens/contact_detail.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MaterialApp(
-
-    home: HomePage(),
-    initialRoute: WelcomePage.id,
-    routes: {
-      WelcomePage.id: (context) => WelcomePage(),
-      LoginPage.id: (context) => LoginPage(),
-      WritePage.id: (context) => WritePage(),
-      RegisterPage.id: (context) => RegisterPage(),
-      HomePage.id: (context) => HomePage(),
-      Information.id: (context) => Information(),
-      ContactsPage.id: (context) => ContactsPage(),
-    },
-  ));
+  runApp(
+    MaterialApp(
+      home: HomePage(),
+      initialRoute: WelcomePage.id,
+      routes: {
+        WelcomePage.id: (context) => WelcomePage(),
+        LoginPage.id: (context) => LoginPage(),
+        WritePage.id: (context) => WritePage(),
+        RegisterPage.id: (context) => RegisterPage(),
+        HomePage.id: (context) => HomePage(),
+        Information.id: (context) => Information(),
+        ContactsPage.id: (context) => ContactsPage(),
+      },
+      themeMode: ThemeMode.dark,
+      debugShowCheckedModeBanner: false,
+    ),
+  );
 }
 
 class MainScreen extends StatelessWidget {

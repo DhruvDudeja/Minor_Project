@@ -55,9 +55,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images1.png
-    - assets/google.jpg
+    - assets/google.png
     - assets/icons.png
-    - assets/nfcs.jpg
+    - assets/nfcs.png
     - assets/bg.jpg
 #    - assets/background.png
 #    - assets/background2.png

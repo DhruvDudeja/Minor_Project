@@ -1,19 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-String getInitials(name) {
-  List<String> names = name.split(" ");
-  String initials = "";
-  int numWords = 2;
-
-  if (numWords < names.length) {
-    numWords = names.length;
-  }
-  for (var i = 0; i < numWords; i++) {
-    initials += '${names[i][0]}';
-  }
-  return initials;
-}
 
 class ContactDetails extends StatelessWidget {
   final QueryDocumentSnapshot contact;
@@ -23,6 +10,13 @@ class ContactDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black87,
+        title: Text(
+          'Contact',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 20, fontFamily: 'poppins', fontWeight: FontWeight.bold),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -32,41 +26,54 @@ class ContactDetails extends StatelessWidget {
       ),
       body: SafeArea(
         child: Container(
+          color: Colors.black,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Center(
                 child: CircleAvatar(
-                  child: Text(getInitials(contact['name'])),
-                  radius: 80,
+                  backgroundColor: Colors.teal,
+                  child: Text(contact['name'][0],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 65,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  radius: 70,
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
-              Text(
-                contact['name'],
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w100,
-                  fontFamily: 'Bunch Blossoms',
+              Card(
+                color: Colors.black54,
+                child: Text(
+                  contact['name'],
+                  style: TextStyle(
+                      fontSize: 40.0,
+                      color: Colors.white,
+                      fontFamily: 'poppins',
+                      fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(
                 width: 150,
               ),
               Card(
-                color: Colors.white,
+                color: Colors.black54,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
                 child: ListTile(
                     leading: Icon(
                       Icons.phone,
-                      color: Colors.teal,
+                      color: Colors.tealAccent,
                     ),
                     title: Text(
                       contact['phone'],
                       style: TextStyle(
-                        fontFamily: 'Source Sans Pro',
+                        fontSize: 18.0,
+                        color: Colors.white,
+                        fontFamily: 'poppins',
+                        fontWeight: FontWeight.bold,
                       ),
                     )),
               ),
@@ -74,18 +81,21 @@ class ContactDetails extends StatelessWidget {
                 width: 20,
               ),
               Card(
-                  color: Colors.white,
+                  color: Colors.black54,
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
                   child: ListTile(
                     leading: Icon(
                       Icons.mail,
-                      color: Colors.blueGrey,
+                      color: Colors.tealAccent,
+                      size: 35,
                     ),
                     title: Text(
                       contact['email'],
                       style: TextStyle(
-                        fontFamily: "Source Sans Pro",
-                      ),
+                          fontSize: 15.0,
+                          color: Colors.white,
+                          fontFamily: 'poppins',
+                          fontWeight: FontWeight.bold),
                     ),
                   )),
             ],
@@ -94,16 +104,4 @@ class ContactDetails extends StatelessWidget {
       ),
     );
   }
-} /*
-import 'package:flutter/material.dart';
-
-class ContactDetails extends StatelessWidget {
-  static String id = 'contactdetails';
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.red,
-    );
-  }
 }
-*/

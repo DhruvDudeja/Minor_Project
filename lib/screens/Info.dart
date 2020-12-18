@@ -29,114 +29,154 @@ class _InformationState extends State<Information> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black87,
         leading: IconButton(
-          icon: Icon(Icons.home ),
+          icon: Icon(Icons.home_filled),
           onPressed: () {
             Navigator.pushReplacementNamed(context, HomePage.id);
           },
         ),
         centerTitle: true,
         title: Text(
-          'Edit your profile',
+          'Nimble',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 20,
-            // fontFamily: 'Bunch Blossoms',
+            fontSize: 30,
+            fontFamily: 'Bunch Blossoms',
           ),
         ),
         actions: [FlatButton(onPressed: null, child: null)],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            CircleAvatar(
-              radius: 80,
-              backgroundColor: Colors.blueGrey,
-              child: Icon(
-                Icons.person,
-                size: 50,
-                color: Colors.white,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: TextField(
-                controller: _nameController,
-                decoration: InputDecoration(
-                  labelText: 'Name',
-                  hintText: 'ENTER NAME',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-              child: TextField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  hintText: 'ENTER EMAIL',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-              child: TextField(
-                controller: _phoneController,
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  hintText: 'ENTER PHONE NUMBER',
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: ButtonTheme(
-                minWidth: 300,
-                height: 50,
-                child: RaisedButton(
-                  onPressed: () async {
-                    await UserHelper.saveUser(_nameController.text,
-                        _phoneController.text, _emailController.text);
-                    //TODO: add alert box saying "User information saved"
-                  },
-                  color: Colors.black,
-                  padding: EdgeInsets.only(top: 3, left: 3),
-                  child: Text(
-                    'CONTINUE',
+      body: Container(
+        color: Colors.black,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: Text("Edit your profile",
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                        fontFamily: 'poppins',
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 60.0),
+                    textAlign: TextAlign.center),
+              ),
+              const SizedBox(height: 120.0),
+              Padding(
+                padding: const EdgeInsets.all(18),
+                child: TextField(
+                  controller: _nameController,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.white,
+                      fontFamily: 'poppins'),
+                  decoration: InputDecoration(
+                    hintText: 'Enter name',
+                    hintStyle: TextStyle(
+                        fontSize: 22.0,
+                        color: Colors.white,
+                        fontFamily: 'poppins'),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.teal,
+                      ),
                     ),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
                   ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(18),
+                child: TextField(
+                  controller: _emailController,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.white,
+                      fontFamily: 'poppins'),
+                  decoration: InputDecoration(
+                    hintText: 'Enter email',
+                    hintStyle: TextStyle(
+                        fontSize: 22.0,
+                        color: Colors.white,
+                        fontFamily: 'poppins'),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18),
+                child: TextField(
+                  controller: _phoneController,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.white,
+                      fontFamily: 'poppins'),
+                  decoration: InputDecoration(
+                    hintText: 'Enter phone number',
+                    hintStyle: TextStyle(
+                        fontSize: 22.0,
+                        color: Colors.white,
+                        fontFamily: 'poppins'),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18),
+                child: ButtonTheme(
+                  minWidth: 200,
+                  height: 50,
+                  child: RaisedButton(
+                    onPressed: () async {
+                      await UserHelper.saveUser(_nameController.text,
+                          _phoneController.text, _emailController.text);
+                      AlertDialog(
+                        title: Icon(
+                          Icons.done,
+                          color: Colors.tealAccent,
+                        ),
+                        content: Text(
+                          'User information saved',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'poppins'),
+                        ),
+                      );
+                    },
+                    color: Colors.teal,
+                    padding: EdgeInsets.only(top: 3, left: 3),
+                    child: Text(
+                      'Continue',
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.white,
+                          fontFamily: 'poppins'),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
