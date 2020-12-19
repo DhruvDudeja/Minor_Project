@@ -1,5 +1,4 @@
 import 'package:back/screens/home.dart';
-import 'package:back/screens/write_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -16,6 +15,8 @@ class _InformationState extends State<Information> {
   TextEditingController _emailController;
   TextEditingController _nameController;
   TextEditingController _phoneController;
+  TextEditingController _orgController;
+  TextEditingController _titleController;
 
   @override
   void initState() {
@@ -23,11 +24,14 @@ class _InformationState extends State<Information> {
     _emailController = TextEditingController(text: "");
     _phoneController = TextEditingController(text: "");
     _nameController = TextEditingController(text: "");
+    _orgController = TextEditingController(text: "");
+    _titleController = TextEditingController(text: "");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         leading: IconButton(
@@ -63,7 +67,7 @@ class _InformationState extends State<Information> {
                         fontSize: 60.0),
                     textAlign: TextAlign.center),
               ),
-              const SizedBox(height: 120.0),
+              const SizedBox(height: 70.0),
               Padding(
                 padding: const EdgeInsets.all(18),
                 child: TextField(
@@ -138,27 +142,66 @@ class _InformationState extends State<Information> {
               ),
               Padding(
                 padding: const EdgeInsets.all(18),
+                child: TextField(
+                  controller: _titleController,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.white,
+                      fontFamily: 'poppins'),
+                  decoration: InputDecoration(
+                    hintText: 'Enter title',
+                    hintStyle: TextStyle(
+                        fontSize: 22.0,
+                        color: Colors.white,
+                        fontFamily: 'poppins'),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18),
+                child: TextField(
+                  controller: _orgController,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.white,
+                      fontFamily: 'poppins'),
+                  decoration: InputDecoration(
+                    hintText: 'Enter organisation',
+                    hintStyle: TextStyle(
+                        fontSize: 22.0,
+                        color: Colors.white,
+                        fontFamily: 'poppins'),
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.teal,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18),
                 child: ButtonTheme(
                   minWidth: 200,
                   height: 50,
                   child: RaisedButton(
                     onPressed: () async {
-                      await UserHelper.saveUser(_nameController.text,
-                          _phoneController.text, _emailController.text);
-                      AlertDialog(
-                        title: Icon(
-                          Icons.done,
-                          color: Colors.tealAccent,
-                        ),
-                        content: Text(
-                          'User information saved',
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'poppins'),
-                        ),
-                      );
+                      await UserHelper.saveUser(
+                          _nameController.text,
+                          _phoneController.text,
+                          _emailController.text,
+                          _orgController.text,
+                          _titleController.text);
+                      Navigator.pushNamed(context, HomePage.id);
                     },
                     color: Colors.teal,
                     padding: EdgeInsets.only(top: 3, left: 3),

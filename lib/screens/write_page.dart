@@ -91,13 +91,15 @@ class _WritePageState extends State<WritePage> {
                               print(message.payload);
                               VCard vc = VCard(message.payload);
                               UserHelper.saveContact(
-                                  vc.formattedName, vc.telephone, vc.email);
+                                  vc.formattedName,
+                                  vc.telephone,
+                                  vc.email,
+                                  vc.title,
+                                  vc.organisation);
                             },
                           ),
                         ],
                       ),
-
-                      // Text('BRING YOUR PHONE CLOSER',style: TextStyle(fontSize: 20,fontFamily: 'Source Sans Pro' ) ,),
                     ),
                   );
                 });
@@ -126,7 +128,7 @@ class _WritePageState extends State<WritePage> {
                     height: 20,
                   ),
                   Card(
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                    margin: EdgeInsets.symmetric(vertical: 0, horizontal: 50),
                     color: Colors.black12,
                     child: Text(
                       snapshot.data['name'],
@@ -137,8 +139,35 @@ class _WritePageState extends State<WritePage> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(
-                    width: 150,
+                  Card(
+                    color: Colors.black12,
+                    margin: EdgeInsets.symmetric(vertical: 0, horizontal: 50),
+                    child: ListTile(
+                        title: Text(
+                      snapshot.data['title'],
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                        fontFamily: 'poppins',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                  ),
+                  Card(
+                    color: Colors.black12,
+                    margin: EdgeInsets.symmetric(vertical: 0, horizontal: 50),
+                    child: ListTile(
+                        title: Text(
+                      snapshot.data['org'],
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                        fontFamily: 'poppins',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                   ),
                   Card(
                     color: Colors.black12,
@@ -196,7 +225,9 @@ class _WritePageState extends State<WritePage> {
                       NfcHelper().ndefWrite(
                           name: snapshot.data['name'],
                           phoneno: snapshot.data['phone'],
-                          email: snapshot.data['email']);
+                          email: snapshot.data['email'],
+                          org: snapshot.data['org'],
+                          title: snapshot.data['title']);
                     },
                   ),
                 ],

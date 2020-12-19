@@ -51,27 +51,40 @@ class AuthHelper {
 class UserHelper {
   static FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  static saveUser(String name, String phone, String email) async {
+  static saveUser(
+      String name, String phone, String email, String org, String title) async {
     User user = _auth.currentUser;
     Map<String, dynamic> userData = {
       "name": name,
       "email": email,
       "phone": phone,
+      "org": org,
+      "title": title,
     };
 
     final userRef = _db.collection("users").doc(user.uid);
     await userRef.set(userData);
   }
 
-  static saveContact(String name, String phone, String email) async {
+  static saveContact(
+      String name, String phone, String email, String org, String title) async {
     User user = _auth.currentUser;
     Map<String, dynamic> contactData = {
       "name": name,
       "email": email,
       "phone": phone,
+      "org": org,
+      "title": title,
     };
     final contactRef =
         _db.collection("users").doc(user.uid).collection("contacts");
     await contactRef.add(contactData);
+  }
+
+  static deleteContact(String name) async {
+    User user = _auth.currentUser;
+    final contactRef =
+        _db.collection('users').doc(user.uid).collection('contacts').doc(name);
+    await contactRef.delete();
   }
 }

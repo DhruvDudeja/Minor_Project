@@ -1,14 +1,22 @@
 import 'dart:typed_data';
+import 'package:flutter/cupertino.dart';
 import 'package:nfc_manager/nfc_manager.dart';
 
 class NfcHelper {
-  void ndefWrite({String name, String phoneno, String email}) {
+  void ndefWrite(
+      {@required String name,
+      @required String phoneno,
+      @required String email,
+      String org,
+      String title}) {
+    String output;
     NfcManager.instance.startSession(onDiscovered: (NfcTag tag) async {
       Ndef ndef = Ndef.from(tag);
       if (ndef == null || !ndef.isWritable) {
-        print('tag is not writeable');
+        output = 'tag is not writeable';
+        print(output);
         // NfcManager.instance.stopSession(errorMessage: result.value);
-        return;
+        return output;
       }
 
       NdefMessage message = NdefMessage([
@@ -19,6 +27,8 @@ VERSION:3.0
 FN:$name
 TEL:$phoneno
 EMAIL:$email
+ORG:$org
+TITLE:$title
 END:VCARD'''
                 .codeUnits)),
       ]);
@@ -27,12 +37,12 @@ END:VCARD'''
         await ndef.write(message);
         print(message);
         print('written to tag');
-        // result.value = 'Success to "Ndef Write"';
+        output = 'Success to "Ndef Write"';
         NfcManager.instance.stopSession();
       } catch (e) {
-        // result.value = e;
+        output = e.toString();
         // NfcManager.instance.stopSession(errorMessage: result.value.toString());
-        return;
+        return output;
       }
     });
   }

@@ -1,8 +1,10 @@
 import 'package:back/screens/contact_detail.dart';
+import 'package:back/services/authentication.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class ContactsPage extends StatefulWidget {
   static String id = 'contactspage';
@@ -41,28 +43,48 @@ class _ContactsPageState extends State<ContactsPage> {
                   var contact = list[index];
                   return Card(
                     color: Colors.black54,
-                    child: ListTile(
-                      // leading: CircleAvatar(
-                      //   child: Text(
-                      //     list[index]['name'][0].toString().toUpperCase(),
-                      //     style: TextStyle(fontWeight: FontWeight.bold),
-                      //   ),
-                      // ),
-                      title: Text(
-                        list[index]['name'],
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.white,
-                          fontFamily: 'poppins',
-                          fontWeight: FontWeight.bold,
+                    shadowColor: Colors.grey,
+                    child: Slidable(
+                      actionPane: SlidableDrawerActionPane(),
+                      actionExtentRatio: 0.2,
+                      actions: [
+                        IconSlideAction(
+                            caption: 'Delete',
+                            color: Colors.red,
+                            icon: Icons.delete,
+                            onTap: () async {
+                              await UserHelper.deleteContact(
+                                  list[index]['email']);
+                            }),
+                      ],
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.teal,
+                          child: Text(
+                            list[index]['name'][0].toString().toUpperCase(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                            ),
+                          ),
                         ),
+                        title: Text(
+                          list[index]['name'],
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.white,
+                            fontFamily: 'poppins',
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ContactDetails(contact)));
+                        },
                       ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ContactDetails(contact)));
-                      },
                     ),
                   );
                 },

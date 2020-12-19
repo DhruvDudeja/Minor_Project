@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/welcome.dart';
 import 'screens/login.dart';
-import 'screens/contact_detail.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +26,7 @@ void main() async {
         ContactsPage.id: (context) => ContactsPage(),
       },
       themeMode: ThemeMode.dark,
+      theme: ThemeData(fontFamily: 'poppins'),
       debugShowCheckedModeBanner: false,
     ),
   );

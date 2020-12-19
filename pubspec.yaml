@@ -37,7 +37,8 @@ dependencies:
   nfc_manager: ^2.0.2
   nfc_in_flutter: ^2.0.5
   simple_vcard_parser: ^0.1.6
-  firestore_ui: ^1.12.0
+  flutter_slidable: ^0.5.7
+  url_launcher: ^5.7.10
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +73,7 @@ flutter:
     - family : poppins
       fonts:
           - asset: fonts/Poppins.ttf
+            weight: 900
       # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
