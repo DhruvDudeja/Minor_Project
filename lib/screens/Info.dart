@@ -210,7 +210,8 @@ class _InformationState extends State<Information> {
                       style: TextStyle(
                           fontSize: 20.0,
                           color: Colors.white,
-                          fontFamily: 'poppins'),
+                          fontFamily: 'poppins',
+                          fontWeight: FontWeight.bold),
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(40),

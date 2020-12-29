@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:back/screens/write_page.dart';
 import 'package:back/screens/contacts_page.dart';
 import 'package:back/screens/main_drawer.dart';
+import 'contacts_page.dart';
 
 class HomePage extends StatefulWidget {
   static String id = 'home';
@@ -44,6 +45,21 @@ class _HomePageState extends State<HomePage> {
             fontFamily: 'Bunch Blossoms',
           ),
         ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, ContactsPage.id);
+              },
+              child: Icon(
+                Icons.contact_page_outlined,
+                size: 26.0,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
       ),
       drawer: MainDrawer(),
       body: buildPageView(),
